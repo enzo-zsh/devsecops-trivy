@@ -1,0 +1,8 @@
+# ⚠️ PACKAGES VOLONTAIREMENT OBSOLÈTES - NE PAS UTILISER EN PRODUCTION
+Flask==1.1.2
+Werkzeug==1.0.1
+itsdangerous==1.1.0
+requests==2.18.0
+numpy==1.16.0
+Jinja2==2.11.3
+MarkupSafe==1.1.1
