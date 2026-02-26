@@ -1,0 +1,42 @@
+Pour pusher sur GitHub Container Registry (GHCR), il faut d'abord vous authentifier. Voici les étapes :
+
+### 1️⃣ Créer un Personal Access Token (PAT)
+
+Allez sur **GitHub → Settings → Developer Settings → Personal Access Tokens → Tokens (classic)** et créez un token avec les scopes :
+- `write:packages`
+- `read:packages`
+- `delete:packages`
+
+### 2️⃣ Se connecter à GHCR en local
+
+```bash
+echo "VOTRE_TOKEN" | docker login ghcr.io -u VOTRE_USERNAME --password-stdin
+```
+
+### 3️⃣ Builder et tagger l'image
+
+```bash
+# Build
+docker build -t hello-flask-vuln .
+
+# Tag au format GHCR
+docker tag hello-flask-vuln:latest ghcr.io/VOTRE_USERNAME/hello-flask-vuln:latest
+```
+
+### 4️⃣ Pusher
+
+```bash
+docker push ghcr.io/VOTRE_USERNAME/hello-flask-vuln:latest
+```
+
+### 5️⃣ Vérifier
+
+Allez sur **github.com/VOTRE_USERNAME?tab=packages** — votre image apparaît là.
+
+---
+
+### 🔄 Mettre à jour le workflow CI/CD
+
+Une fois le push manuel validé, décommentez les blocs dans le `ci.yml` — le `GITHUB_TOKEN` est automatiquement disponible en CI, **pas besoin de créer de secret supplémentaire** pour GHCR.
+
+Remplacez juste `VOTRE_USERNAME` par votre vrai handle GitHub partout. Quel est-il ?
