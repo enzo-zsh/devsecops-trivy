@@ -21,7 +21,7 @@ COPY . .
 # Installation sans cache propre ni vérification d'intégrité
 RUN pip install -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 5200
 
 # debug=True → exposition de la console Werkzeug interactive
 CMD ["python", "app.py"]
